@@ -35,6 +35,8 @@ public class Sororitas implements Serializable {
     }
 
 
+
+
     /**
      * getter y setter
      * @return los atributos

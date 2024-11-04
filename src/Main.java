@@ -30,7 +30,10 @@ public class Main {
          * Escribimos y leemos del fichero serializable
          */
         lecturaCodigos.escribirFicheroSerializable(sororitasList, pathFicheroDatos);
-        lecturaCodigos.readFileDatSororitas(pathFicheroDatos);
+        List<Sororitas> sororitasList1 =  lecturaCodigos.readFileDatSororitas(pathFicheroDatos);
+        for(Sororitas sororitas:sororitasList1){
+            System.out.println(sororitas);
+        }
 
 
 

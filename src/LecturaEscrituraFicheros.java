@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,7 +91,7 @@ public class LecturaEscrituraFicheros {
      * Metodo que lee el fichero serializable
      * @param path el path del fichero
      */
-    public void readFileDatSororitas(String path){
+    public List <Sororitas> readFileDatSororitas(String path){
         /**
          * Explicacion:
          * 1. hacemos un objeto file y de parámetro le metemos el path
@@ -100,18 +101,22 @@ public class LecturaEscrituraFicheros {
          * 5. capturamos excepciones
          */
         File file = new File(path);
+        List <Sororitas> sororitasList = new ArrayList<>();
+        Sororitas sor;
         if (file.exists()) {
             try{
                 ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-                Sororitas sor;
-                while((sor = (Sororitas)ois.readObject()) != null){
-                    System.out.println(sor);
+                while(true){
+                    sor = (Sororitas)ois.readObject();
+                    sororitasList.add(sor);
                 }
+
             } catch (IOException e) {
                 System.out.println("Ups, no se pudo leer el archivo dat o has llegado al final");
             }catch(ClassNotFoundException e){
                 System.out.println("Ups, no se encontró la clase");
             }
         }
+        return sororitasList;
     }
 }
