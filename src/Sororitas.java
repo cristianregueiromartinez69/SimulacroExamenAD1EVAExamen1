@@ -67,7 +67,7 @@ public class Sororitas implements Serializable {
 
     @Override
     public String toString() {
-        return "\nnome: " + nome +
+        return "Codigo: " + codigo + "\nnome: " + nome +
                 "\npuntos: " + puntos;
     }
 }

@@ -25,7 +25,7 @@ public class CrudDB {
          * 5. mientras haya resultados, creamos un objeto con los valores de la consulta
          * 6. devolvemos el objeto
          */
-        String consulta = "select nome,puntos from adeptaSororitas where cod = ?";
+        String consulta = "select * from adeptaSororitas where cod = ?";
         Sororitas sororitas = new Sororitas();
         try{
             Connection conn = ConexionDB.conectar();
@@ -34,6 +34,7 @@ public class CrudDB {
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()) {
+                sororitas.setCodigo(rs.getInt("cod"));
                 sororitas.setNome(rs.getString("nome"));
                 sororitas.setPuntos(rs.getInt("puntos"));
             }
