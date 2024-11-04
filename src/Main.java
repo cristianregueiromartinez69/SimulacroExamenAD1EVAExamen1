@@ -14,6 +14,8 @@ public class Main {
         //objeto de la clase CrudDB
         CrudDB crudDB = new CrudDB();
 
+
+
         //path con los codigos
         String pathCodigos = "C:/Users/crm23/OneDrive/Escritorio/dam2Clase/Acceso a Datos/SimulacroEXADEva1/codigosUnidades.txt";
 
@@ -31,9 +33,10 @@ public class Main {
          */
         lecturaCodigos.escribirFicheroSerializable(sororitasList, pathFicheroDatos);
         List<Sororitas> sororitasList1 =  lecturaCodigos.readFileDatSororitas(pathFicheroDatos);
-        for(Sororitas sororitas:sororitasList1){
-            System.out.println(sororitas);
-        }
+        String pathXml = "sororitas.xml";
+
+
+
 
 
 
