@@ -1,6 +1,4 @@
-import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
+import javax.xml.stream.*;
 import java.io.*;
 import java.util.List;
 
@@ -36,5 +34,53 @@ public class LecturaEscrituraXml {
         } catch (XMLStreamException | IOException e) {
             System.out.println("Ups, no se encontro el archivo");
         }
+    }
+
+    public void lecturaXmlSororitas(String path) {
+
+        String elementoActual = "";
+        String codigo = "";
+        String nome = "";
+        String puntos = "";
+
+        XMLInputFactory xif = XMLInputFactory.newInstance();
+        try{
+            XMLStreamReader xmlStreamReader = xif.createXMLStreamReader(new FileInputStream(path));
+
+            int element;
+
+            while(xmlStreamReader.hasNext()){
+                element = xmlStreamReader.next();
+
+                if(element == XMLStreamConstants.START_ELEMENT){
+                    elementoActual = xmlStreamReader.getLocalName();
+                }
+                else if(element == XMLStreamConstants.CHARACTERS){
+                    String text = xmlStreamReader.getText().trim();
+                    if("codigo".equals(elementoActual) && !text.isEmpty()){
+                        codigo = text;
+                    }
+                    else if("nome".equals(elementoActual) && !text.isEmpty()){
+                        nome = text;
+                    }
+                    else if("puntos".equals(elementoActual) && !text.isEmpty()){
+                        puntos = text;
+                    }
+                }
+                else if(element == XMLStreamConstants.END_ELEMENT){
+                    if("unidad".equals(xmlStreamReader.getLocalName())){
+                        System.out.println("Codigo: " + codigo);
+                        System.out.println("Nome: " + nome);
+                        System.out.println("Puntos: " + puntos);
+                    }
+                }
+            }
+            xmlStreamReader.close();
+        } catch (XMLStreamException e) {
+            System.out.println("Ups, ha ocurrido un error al operar con el archivo xml");
+        }catch(FileNotFoundException e){
+            System.out.println("Ups, no se encontro el archivo para leerlo");
+        }
+
     }
 }

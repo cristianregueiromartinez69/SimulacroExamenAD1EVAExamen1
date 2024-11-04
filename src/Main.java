@@ -14,7 +14,7 @@ public class Main {
         //objeto de la clase CrudDB
         CrudDB crudDB = new CrudDB();
 
-
+        LecturaEscrituraXml lecturaEscrituraXml = new LecturaEscrituraXml();
 
         //path con los codigos
         String pathCodigos = "C:/Users/crm23/OneDrive/Escritorio/dam2Clase/Acceso a Datos/SimulacroEXADEva1/codigosUnidades.txt";
@@ -35,7 +35,9 @@ public class Main {
         List<Sororitas> sororitasList1 =  lecturaCodigos.readFileDatSororitas(pathFicheroDatos);
         String pathXml = "sororitas.xml";
 
+        lecturaEscrituraXml.escrituraArchivoXml(sororitasList1, pathXml);
 
+        lecturaEscrituraXml.lecturaXmlSororitas(pathXml);
 
 
 
